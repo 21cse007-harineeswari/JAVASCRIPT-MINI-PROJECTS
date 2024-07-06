@@ -8,5 +8,4 @@
     {
         res.textContent=one.value
     }
-
 </script>
