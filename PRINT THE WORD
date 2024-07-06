@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Text Example</title>
+</head>
+<body>
+    <button onclick="update()">Add</button>
+    <div id="result"></div>
+    
+    <script>
+        var res = document.getElementById("result");
+        
+        function update() {   
+            var items = document.createElement("div"); // Create a new div element
+            items.textContent = "Hello"; // Set the text content of the new element
+            res.appendChild(items); // Append the new element to the result div
+        }
+    </script>
+</body>
+</html>
