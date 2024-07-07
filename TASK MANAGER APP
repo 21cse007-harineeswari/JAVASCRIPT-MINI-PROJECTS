@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        #app-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            width: 350px;
+            text-align: center;
+        }
+        #app-container h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+        #input {
+            width: calc(100% - 22px);
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        li {
+            background: #f9f9f9;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        li button {
+            margin-left: 5px;
+            background-color: #dc3545;
+            transition: background-color 0.3s;
+        }
+        li button.edit {
+            background-color: #ffc107;
+        }
+        li button.edit:hover {
+            background-color: #e0a800;
+        }
+        li button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div id="app-container">
+        <h1>Task Manager</h1>
+        <input id="input" type="text" placeholder="Enter task...">
+        <button onclick="add()">Add</button>
+        <ul id="listcontainer">
+            <li> Hello
+                <div>
+                    <button class="edit" onclick="editItem(event)">Edit</button>
+                    <button onclick="deleteItem(event)">Delete</button>
+                </div>
+            </li>
+        </ul> 
+    </div>
+
+    <script>
+        var ul = document.getElementById("listcontainer");
+
+        function add() {
+            var input = document.getElementById("input");
+            if (input.value.trim() === "") return; // Prevent adding empty tasks
+            var listitem = document.createElement("li");
+            listitem.innerHTML = input.value + 
+                '<div>' +
+                '<button class="edit" onclick="editItem(event)">Edit</button>' +
+                '<button onclick="deleteItem(event)">Delete</button>' +
+                '</div>';
+            ul.append(listitem);
+            input.value = ''; // Clear the input field
+        }
+
+        function deleteItem(event) {
+            event.target.parentElement.parentElement.remove();
+        }
+
+        function editItem(event) {
+            var listitem = event.target.parentElement.parentElement;
+            var currentText = listitem.firstChild.textContent.trim();
+            var newText = prompt("Edit your task:", currentText);
+            if (newText !== null && newText.trim() !== "") {
+                listitem.firstChild.textContent = newText;
+            }
+        }
+    </script>
+</body>
+</html>
