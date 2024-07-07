@@ -1,0 +1,15 @@
+//demo.html
+    <h1 id="result">Name</h1>
+    <button onclick="update(event)">Harini</button>
+    <button onclick="update(event)">Dhiya</button>
+    <button onclick="update(event)">Magilan</button>
+    
+    
+    <script>
+        var res = document.getElementById("result");
+        
+        function update(event) {   
+            res.textContent=event.target.textContent
+        }
+    </script>
+
